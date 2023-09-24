@@ -3,6 +3,7 @@ package com.qacart.todo.factory;
 import org.bouncycastle.oer.Switch;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -15,7 +16,9 @@ public class DriverFactory {
         String browser =  System.getProperty("browser","CHROME");// it will get the value from the terminal
         switch (browser){
              case "CHROME" -> {
-                 driver = new ChromeDriver();
+                 ChromeOptions options  = new ChromeOptions();
+                 options.addArguments("--headless"); // Run the test cases in headless mode [Without opening the browser]
+                 driver = new ChromeDriver(options);
              }
              case "FIREFOX" -> {
                  driver = new FirefoxDriver();
